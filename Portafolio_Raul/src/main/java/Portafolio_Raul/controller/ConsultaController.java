@@ -58,5 +58,18 @@ public class ConsultaController {
         model.addAttribute("precioSup", precioSup);
         return "/consultas/listado";
     }
-}
 
+    // Consulta de productos con bajo inventario
+    @PostMapping("/consultaBajoInventario")
+    public String consultaBajoInventario(
+            @RequestParam("existencias") int existencias,
+            Model model) {
+
+        var productos = productoService.consultaBajoInventario(existencias);
+
+        model.addAttribute("productos", productos);
+        model.addAttribute("existencias", existencias);
+
+        return "/consultas/listado";
+    }
+}

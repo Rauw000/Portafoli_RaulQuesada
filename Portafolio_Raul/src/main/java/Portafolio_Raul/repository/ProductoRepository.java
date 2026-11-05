@@ -13,6 +13,10 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 
     public List<Producto> findByActivoTrue();
 
+    // Consulta derivada para productos con bajo inventario
+    public List<Producto> findByExistenciasLessThanEqualOrderByExistenciasAsc(
+            int existencias);
+
     // Consulta derivada por rango de precio
     public List<Producto> findByPrecioBetweenOrderByPrecioAsc(
             BigDecimal precioInf, BigDecimal precioSup);

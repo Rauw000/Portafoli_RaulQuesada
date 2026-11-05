@@ -82,7 +82,10 @@
 
                 <div th:replace="~{consultas/fragmentos :: formConsulta('info', 'Consulta SQL', '/consultas/consultaSQL')}"></div>
 
+                <div th:replace="~{consultas/fragmentos :: formInventario('warning', 'Consulta por existencias', '/consultas/consultaBajoInventario')}"></div>
             </div>
+
+
         </section>
 
         <!-- Formulario reutilizable -->
@@ -116,6 +119,44 @@
                                    class="form-control"
                                    min="0"
                                    step="0.01"
+                                   required />
+                        </div>
+
+                        <button type="submit"
+                                class="btn w-100"
+                                th:classappend="'btn-' + ${colorForm}">
+                            Buscar
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulario de consulta por existencias -->
+        <div th:fragment="formInventario(colorForm, textoForm, urlForm)"
+             class="col-md-4">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-header"
+                     th:classappend="'bg-' + ${colorForm}">
+                    <h5 th:text="${textoForm}">Consulta</h5>
+                </div>
+
+                <div class="card-body">
+                    <form th:action="@{${urlForm}}" method="post">
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Cantidad máxima de existencias
+                            </label>
+
+                            <input type="number"
+                                   name="existencias"
+                                   class="form-control"
+                                   min="0"
+                                   step="1"
                                    required />
                         </div>
 

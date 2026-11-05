@@ -83,4 +83,10 @@ public class ProductoService {
         return productoRepository.consultaSQL(precioInf, precioSup);
     }
 
+    // Consulta de productos con bajo inventario
+    public List<Producto> consultaBajoInventario(int existencias) {
+        return productoRepository
+                .findByExistenciasLessThanEqualOrderByExistenciasAsc(existencias);
+    }
+
 }
